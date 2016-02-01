@@ -152,10 +152,7 @@ Follow the instructions in WebSite\WebsitePublish.md to set up the web site code
 1. You can see in the mbed compiler that importing this project imported various libraries. Some are provided and maintained by the Azure IoT team ([azureiot_common](https://developer.mbed.org/users/AzureIoTClient/code/azureiot_common/), [iothub_client](https://developer.mbed.org/users/AzureIoTClient/code/iothub_client/), [iothub_http_transport](https://developer.mbed.org/users/AzureIoTClient/code/iothub_http_transport/), [proton-c-mbed](https://developer.mbed.org/users/AzureIoTClient/code/proton-c-mbed/)), while others are third party libraries available in the mbed libraries catalog.
 
 1. In the IothubRobotArm.cpp file, find and replace values in the following lines of code with your device **connection string** (to obtain this device connection string you can use the node.js tool as described earlier in this tutorial or using device explorer as instructed [here][device-explorer]):
-
-  ```
-  static const char* connectionString = "[connection string]";
-  ```
+  ` static const char* connectionString = "[connection string]"; `
 
 1. Click **Compile** to build the program. You can safely ignore any warnings, but if the build generates errors, fix them before proceeding.
 
@@ -165,7 +162,18 @@ Follow the instructions in WebSite\WebsitePublish.md to set up the web site code
 
 1. In PuTTY, click the **Serial** connection type. The device most likely connects at 115200, so enter that value in the **Speed** box. Then click **Open**: 
 
+### Customizing the device software
+1. The file *RobotArmCfg.h* contains an array of joints and their Ids. Each joint is referenced by its index in this array. If you want to have more joints, add an array entry, and change the value of *NUMJOINTS*.
 
+2. The file *RobotNode/RobotNode.h* specifies the types of actuators supported, and the *RobotNode* base class for any actuator. The sample only uses the *AX12* actuator, but an emulated actuator is also included. If you need to add a different type of actuator, create a new class derived from RobotNode, and a value to the *NodePartType* enumeration. The *RobotArm* constructor needs to be updated to recognize a new actuator type.
+
+3. The file *RobotArm.cpp* has the code to initialize the *DynamixelBus*. The sample is using a baud rate of 500,000, as a higher baud rate was found to be unreliable. The AX12 actuators need to be programmed to operate at this baud rate as this is not the default.
+
+4. The programmed actions are defined in *Sequences.cpp*. A sequence can include a series of motions, delays, and iterated loops. Sequences can be modified, and additional sequences can be added.
+
+5. The file *ArmController.cpp* has the code that maps a command coming from IoT hub to a sequence or a state change. The code that runs the state machine and carries out the commands is also here. The frequency of sending measurements to IoT hub can be changed by modifying *SEND_STATUS_TO*.
+
+6. The file *IothubRobotArm.cpp* sends measurements and alerts to IoT hub, and receives commands from IoT hub. You can change the number of sent messages that are not acknowledged. However note that this increases the heap memory usage. If you exceed the available memory, the software may crash and just stop working.
 
 ### App is now running on the device!
 The program starts executing. You may have to reset the board (press CTRL+Break or press on the board's reset button) if the program does not start automatically when you connect.
