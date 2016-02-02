@@ -147,12 +147,26 @@ Follow the instructions in WebSite\WebsitePublish.md to set up the web site code
 
 1. Click **Import** on the main menu. Then click the **Click here** to import from URL link next to the mbed globe logo.
 
-1. In the popup window, enter the link for the sample code https://developer.mbed.org/teams/robot-arm-demo-team/code/RobotArmDemo/ . Note: In the popup window do not click the option to update the libraries. The Azure IoT SDK may be updated in ways that are not compatible with the sample.
+1. In the popup window, enter the link for the sample code *https://developer.mbed.org/teams/robot-arm-demo-team/code/RobotArmDemo/* . Note: In the popup window do not click the option to update the libraries. The Azure IoT SDK may be updated in ways that are not compatible with the sample.
 
 1. You can see in the mbed compiler that importing this project imported various libraries. Some are provided and maintained by the Azure IoT team ([azureiot_common](https://developer.mbed.org/users/AzureIoTClient/code/azureiot_common/), [iothub_client](https://developer.mbed.org/users/AzureIoTClient/code/iothub_client/), [iothub_http_transport](https://developer.mbed.org/users/AzureIoTClient/code/iothub_http_transport/), [proton-c-mbed](https://developer.mbed.org/users/AzureIoTClient/code/proton-c-mbed/)), while others are third party libraries available in the mbed libraries catalog.
 
-1. In the IothubRobotArm.cpp file, find and replace values in the following lines of code with your device **connection string** (to obtain this device connection string you can use the node.js tool as described earlier in this tutorial or using device explorer as instructed [here][device-explorer]):
-  ` static const char* connectionString = "[connection string]"; `
+1. The code will read a configuration file from the microSD card if one is included. The file name must be **input.cfg**. The format of the file contents is a simple key value pair <key>=<value> per line. The expected values are:
+	1. IoTConnection=device **connection string**
+	2. JointType_0=AX12
+	3. JointId_0=<id>
+	2. JointType_1=AX12
+	3. JointId_1=<id>
+	2. JointType_2=AX12
+	3. JointId_2=<id>
+	2. JointType_3=AX12
+	3. JointId_3=<id>
+	2. JointType_4=AX12
+	3. JointId_4=<id>
+
+    (to obtain this device connection string you can use the node.js tool as described earlier in this tutorial or using device explorer as instructed [here][device-explorer]). Each joint must have a unique ID value that is programmed into the AX12.
+
+1. If you choose not to use a configuration file, then these values must be hard coded in the **RobotArmCfg.cpp** file.
 
 1. Click **Compile** to build the program. You can safely ignore any warnings, but if the build generates errors, fix them before proceeding.
 
@@ -160,10 +174,11 @@ Follow the instructions in WebSite\WebsitePublish.md to set up the web site code
 
 1. Connect to the device using an serial terminal client application, such as PuTTY. You can determine which serial port your device uses by checking the Windows Device Manager:
 
-1. In PuTTY, click the **Serial** connection type. The device most likely connects at 115200, so enter that value in the **Speed** box. Then click **Open**: 
+1. In PuTTY, click the **Serial** connection type. The device most likely connects at 115200, so enter that value in the **Speed** box. Then click **Open**
+
 
 ### Customizing the device software
-1. The file *RobotArmCfg.h* contains an array of joints and their Ids. Each joint is referenced by its index in this array. If you want to have more joints, add an array entry, and change the value of *NUMJOINTS*.
+1. The file *RobotArmCfg.h* contains the value of *NUMJOINTS*. If you want a different number of joints, you must change this value. As described above, the joint IDs and types can be specified in the file input.cfg on a microSD card, or set in the *RobotArmCfg.cpp* file.
 
 2. The file *RobotNode/RobotNode.h* specifies the types of actuators supported, and the *RobotNode* base class for any actuator. The sample only uses the *AX12* actuator, but an emulated actuator is also included. If you need to add a different type of actuator, create a new class derived from RobotNode, and a value to the *NodePartType* enumeration. The *RobotArm* constructor needs to be updated to recognize a new actuator type.
 
