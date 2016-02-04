@@ -1,0 +1,16 @@
+Mfg. Part Number,Digi-Key Part Number,RefDes,Quantity,Unit Price,Qty Available,Description,Links
+ANALOG_IN,"=HYPERLINK(""http://www.digikey.com/product-detail/en/ANALOG_IN/609-3263-ND"",""609-3263-ND"")",J1,1,$0.24,30115,CONN HEADER 6POS .100 STR TIN,
+POWER,"=HYPERLINK(""http://www.digikey.com/product-detail/en/POWER/609-3264-ND"",""609-3264-ND"")",J2,1,$0.27,1315,CONN HEADER 8POS .100 STR TIN,
+DIGITAL_1,"=HYPERLINK(""http://www.digikey.com/product-detail/en/DIGITAL_1/609-3264-ND"",""609-3264-ND"")",J3,1,$0.27,1315,CONN HEADER 8POS .100 STR TIN,
+DIGITAL_2,"=HYPERLINK(""http://www.digikey.com/product-detail/en/DIGITAL_2/609-3250-ND"",""609-3250-ND"")",J4,1,$0.55,1737,CONN HEADER 10POS .100 STR 30AU,
+LM339AN,"=HYPERLINK(""http://www.digikey.com/product-detail/en/LM339AN/-LM339AN"",""-LM339AN"")",U2,1,$0.11,873,IC QUAD DIFF COMPARATOR 14-DIP,"=HYPERLINK(""http://media.digikey.com/Renders/~~Pkg.Case%20or%20Series/14PDIP.jpg"",""Product photo"")"
+
+RESISTOR_1/4W,,R2,1,-, ,No description,
+SN74HC126N,"=HYPERLINK(""http://www.digikey.com/product-detail/en/SN74HC126N/-SN74HC126N"",""-SN74HC126N"")",U1,1,$0.11,616,IC BUS BUFF TRI-ST QD 14DIP,"=HYPERLINK(""http://media.digikey.com/Renders/Texas%20Instr%20Renders/14-DIP.jpg"",""Product photo"")"
+
+TRIM POT .5W  SIDE ADJUST,"=HYPERLINK(""http://www.digikey.com/product-detail/en/TRIM+POT+.5W%2c+SIDE+ADJUST/3362M-103LF-ND"",""3362M-103LF-ND"")",R1,1,$1.02,2938,TRIMMER 10K OHM 0.5W PC PIN,"=HYPERLINK(""http://www.bourns.com/docs/Product-Datasheets/3362.pdf"",""Datasheet"")"
+,,,,,,,"=HYPERLINK(""http://media.digikey.com/photos/Bourns%20Photos/3362X%20SERIES.jpg"",""Product photo"")"
+,,,,,,,"=HYPERLINK(""http://media.digikey.com/pdf/Catalog%20Drawings/Pots/3362M-W-X-dim2.jpg"",""Catalog drawing"")"
+SPOX 5267-3,"=HYPERLINK(""http://www.digikey.com/product-detail/en/SPOX+5267-3/WM18887-ND"",""WM18887-ND"")",J5,1,$0.5,16417,No description,
+PK-11N40PQ,"=HYPERLINK(""http://www.digikey.com/product-detail/en/PK-11N40PQ/458-1342-ND"",""458-1342-ND"")",LS1,1,$3.24,196,BUZZ PIEZO 5V 12MM RADIAL,"=HYPERLINK(""http://www.mallory-sonalert.com/Documents/TechAppGuides/PAG-Indicators-Piezo.pdf"",""Datasheet"")"
+,,,,,,,"=HYPERLINK(""http://media.digikey.com/Photos/Mallory%20Sonalert%20Products%20Photos/PK-11N40PQ.jpg"",""Product photo"")"
